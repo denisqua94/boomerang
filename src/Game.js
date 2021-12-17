@@ -12,7 +12,7 @@ const View = require('./View');
 
 class Game {
   constructor() {
-    this.trackLength = 30;
+    this.trackLength = 30
     this.hero = new Hero(); // Герою можно аргументом передать бумеранг.
     this.enemy = new Enemy();
     this.view = new View();
@@ -32,7 +32,7 @@ class Game {
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
     }
-    if()
+    this.enemy.moveLeft()
   }
 
   play() {
@@ -41,7 +41,7 @@ class Game {
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-    },1000);
+    },100);
   }
 }
 
