@@ -15,9 +15,13 @@ class Enemy {
     // Идём влево.
     this.position -= 1;
   }
+  moveRight() {
+    // Идёмв право.
+    this.position += 1;
+  }
 
   die() {
-    this.position = '?';
+    this.position = 30;
     console.log('Enemy is dead!');
   }
 }
