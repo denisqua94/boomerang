@@ -2,17 +2,17 @@
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
 
-const Hero = require('./game-models/Hero');
-const Enemy = require('./game-models/Enemy');
+const Hero = require("./game-models/Hero");
+const Enemy = require("./game-models/Enemy");
 // const Boomerang = require('./game-models/Boomerang');
-const View = require('./View');
+const View = require("./View");
 
 // Основной класс игры.
 // Тут будут все настройки, проверки, запуск.
 
 class Game {
-  constructor({ trackLength }) {
-    this.trackLength = trackLength;
+  constructor() {
+    this.trackLength = 30
     this.hero = new Hero(); // Герою можно аргументом передать бумеранг.
     this.enemy = new Enemy();
     this.view = new View();
@@ -25,12 +25,16 @@ class Game {
     // в единую структуру данных
     this.track = (new Array(this.trackLength)).fill(' ');
     this.track[this.hero.position] = this.hero.skin;
+    this.track[this.enemy.position] = this.enemy.skin;
   }
 
-  check() {
-    if (this.hero.position === this.enemy.position) {
-      this.hero.die();
+    check() {
+        if (this.hero.position === this.enemy.position) {
+            this.hero.die();
+        }
     }
+
+    this.enemy.moveLeft()
   }
 
   play() {
@@ -39,8 +43,9 @@ class Game {
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-    });
+    },100);
   }
+
 }
 
 module.exports = Game;
